@@ -9,6 +9,8 @@ Instead of opening your terminal manually, navigating to a folder, and running `
 > Add screenshots here.
 
 ```md
+## Preview
+
 ![OpenCode Launcher Screenshot](./app.png)
 ```
 
