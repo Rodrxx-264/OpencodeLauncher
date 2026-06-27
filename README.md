@@ -49,13 +49,6 @@ OpenCode Launcher makes that flow faster:
 
 The goal is to keep the workflow simple, native, and fast.
 
-## Requirements
-
-* macOS
-* Xcode
-* OpenCode installed and available from your shell
-* At least one supported terminal app installed
-
 Make sure `opencode` works from your terminal before using the launcher:
 
 ```bash
@@ -71,142 +64,6 @@ If macOS apps launched from the Dock cannot find `opencode`, the launcher adds c
 /bin
 /usr/sbin
 /sbin
-```
-
-## Supported Terminals
-
-The app automatically chooses the best available terminal using this priority:
-
-1. Ghostty
-2. Kitty
-3. WezTerm
-4. Alacritty
-5. iTerm2
-6. Terminal.app
-
-macOS does not provide a universal “default terminal” setting like it does for browsers, so the app detects installed supported terminals and picks the best available one.
-
-## Permissions
-
-For most terminals, the app launches the terminal executable directly.
-
-However, for Terminal.app and iTerm2, macOS may require Automation permissions because those apps are controlled through AppleScript.
-
-If macOS asks for permission, allow it.
-
-You may also need to enable it manually:
-
-```text
-System Settings → Privacy & Security → Automation
-```
-
-Then allow OpenCode Launcher to control Terminal or iTerm2.
-
-For local development, App Sandbox should be disabled:
-
-```text
-Target → Signing & Capabilities → App Sandbox → Disabled
-```
-
-The app also needs this key in `Info.plist` if Terminal.app or iTerm2 support is enabled:
-
-```text
-NSAppleEventsUsageDescription
-```
-
-Suggested value:
-
-```text
-This app needs to control the selected terminal to open OpenCode inside the project folder.
-```
-
-## Project Structure
-
-```text
-OpenCode Launcher
-├── OpenCodeLauncherApp.swift
-└── ContentView.swift
-```
-
-The app is intentionally small and simple. The main logic is contained in `ContentView.swift`.
-
-Main responsibilities:
-
-* UI layout
-* Folder selection
-* Recent project storage
-* Terminal detection
-* OpenCode launch command
-* Error handling
-
-## How It Works
-
-When the user selects a folder, the app saves its path using `@AppStorage`.
-
-Recent projects are stored as a simple newline-separated list.
-
-When the user clicks **Open**, the app:
-
-1. Gets the selected project path.
-2. Detects the best available terminal.
-3. Builds the command:
-
-```bash
-cd '/selected/project/path' && opencode
-```
-
-4. Opens the terminal.
-5. Runs OpenCode inside that folder.
-
-## Build Instructions
-
-Clone the repository:
-
-```bash
-git clone https://github.com/your-username/opencode-launcher.git
-cd opencode-launcher
-```
-
-Open the project in Xcode:
-
-```bash
-open "OpenCode Launcher.xcodeproj"
-```
-
-Then build and run:
-
-```text
-Command + R
-```
-
-To build without running:
-
-```text
-Command + B
-```
-
-To export the app:
-
-```text
-Product → Archive
-```
-
-Or for personal use:
-
-```text
-Product → Show Build Folder in Finder
-```
-
-Then copy:
-
-```text
-OpenCode Launcher.app
-```
-
-to:
-
-```text
-/Applications
 ```
 
 ## Development Notes
@@ -225,18 +82,6 @@ Some possible future improvements:
 * Automatic update support
 * Signed and notarized release builds
 
-## Known Notes
-
-Ghostty may behave differently depending on how it is launched. The current implementation avoids launching `/bin/zsh` directly through Ghostty’s `-e` mode when possible, because that can trigger macOS permission dialogs or cause the window to close unexpectedly.
-
-Terminal.app and iTerm2 support may require Automation permissions.
-
-## Built With
-
-* Swift
-* SwiftUI
-* AppKit
-* macOS native APIs
 
 ## License
 
