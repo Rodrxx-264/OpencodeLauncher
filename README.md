@@ -6,13 +6,9 @@ Instead of opening your terminal manually, navigating to a folder, and running `
 
 ## Preview
 
-> Add screenshots here.
-
-```md
-## Preview
-
-![OpenCode Launcher Screenshot](./app.png)
-```
+<p align="center">
+  <img src="./app.png" alt="OpenCode Launcher Screenshot" width="700">
+</p>
 
 ## Features
 
