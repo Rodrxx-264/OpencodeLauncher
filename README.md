@@ -9,7 +9,7 @@ Instead of opening your terminal manually, navigating to a folder, and running `
 > Add screenshots here.
 
 ```md
-![OpenCode Launcher Screenshot](./screenshots/screenshot.png)
+![OpenCode Launcher Screenshot](./app.png)
 ```
 
 ## Features
